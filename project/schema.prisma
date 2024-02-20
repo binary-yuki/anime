@@ -1,0 +1,31 @@
+datasource db {
+  // could be postgresql or mysql
+  provider = "postgresql"
+  url      = "postgresql://prisma:prisma@pgsql:5432/pgsql?schema=public&connect_timeout=600"
+}
+
+generator db {
+  provider             = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = 5
+}
+
+model User {
+  id           String         @id @default(cuid())
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @updatedAt
+  name         String         @unique
+  push_token   String?        @unique
+  Subscription Subscription[]
+}
+
+model Subscription {
+  id            String   @id @default(cuid())
+  user          User     @relation(fields: [user_id], references: [id])
+  user_id       String   @default("")
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  anime_name    String   @default("")
+  anime_id      String   @default("")
+  anime_episode Int      @default(0)
+}
