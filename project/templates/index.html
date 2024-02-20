@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>新番时间表</title>
+        <style>
+            .anime {
+                width: 85%;
+                margin: 5% auto;
+                border: 1px solid #000;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            }
+            .anime img {
+                width: 20%;
+                float: left;
+            }
+            .anime div {
+                width: 80%;
+                float: right;
+            }
+            .anime h1 {
+                padding: 10px 0;
+                text-align: center;
+            }
+            .anime ul {
+                list-style-type: none;
+                padding: 0px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            .anime li {
+                width: calc(100% / 6 - 20px);
+            }
+            .anime-placeholder {
+                height: 0;
+                visibility: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="animeList"></div>
+    </body>
+    <script src="script.js"></script>
+<script>
+let animeData = [  // 假设你的数据现在是一个数组
+    {{ animeData }}
+];
+animeData.forEach((data) => {
+    data.result.forEach((anime) => {
+        let animeDiv = document.createElement('div');
+        animeDiv.className = 'anime';
+
+        let img = document.createElement('img');
+        img.src = anime.cover;
+
+        let div = document.createElement('div');
+
+        let h1 = document.createElement('h1');
+        h1.textContent = anime.name;
+
+        let ul = document.createElement('ul');
+        for (let episode in anime.response) {
+            let li = document.createElement('li');
+            let a = document.createElement('a');
+            a.href = anime.response[episode].links[0];
+            a.target = '_blank';
+            a.textContent = episode;
+            li.appendChild(a);
+            ul.appendChild(li);
+        }
+
+        div.appendChild(h1);
+        div.appendChild(ul);
+
+        animeDiv.appendChild(img);
+        animeDiv.appendChild(div);
+
+        animeList.appendChild(animeDiv);
+    })
+});
+</script>
+</html>
