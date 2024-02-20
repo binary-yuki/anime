@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #d960b7, 0 0 10px #d298e7, 0 0 15px #c89ae7, 0 0 20px #d7caf5;
+            }
+
+            to {
+                text-shadow: 0 0 10px #33ff33,0 0 20px #33ff33, 0 0 30px #33ff33, 0 0 40px #33ff33;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <dotlottie-player
+        src="https://lottie.host/418d7011-b5df-4fcc-95ea-0a1148ecd135/19BBYw08Vo.json"
+        background="transparent"
+        speed="1"
+        style="width: 300px; height: 300px;"
+        loop
+        autoplay>
+    </dotlottie-player>
+    <h1>Success</h1>
+</body>
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+</html>
